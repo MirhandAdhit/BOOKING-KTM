@@ -6,7 +6,7 @@ Aplikasi web untuk memudahkan proses pengambilan Kartu Tanda Mahasiswa. Mahasisw
 
 Aplikasi ini menggunakan Node.js dan Express.js untuk sisi server, MySQL sebagai database, dan XAMPP untuk menjalankan MySQL secara lokal.
 
-## Prasyarat
+## System Requirement
 
 Pastikan sudah menginstal Node.js dan XAMPP di komputer sebelum memulai.
 
