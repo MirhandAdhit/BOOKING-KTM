@@ -1,32 +1,36 @@
-﻿# Sistem Pembookingan Kartu Tanda Mahasiswa (KTM)
+# Sistem Pembookingan Kartu Tanda Mahasiswa (KTM)
 
-Aplikasi web ini dibuat untuk mendigitalisasi proses pengambilan Kartu Tanda Mahasiswa di lingkungan kampus. Sebelum ada sistem ini, mahasiswa harus datang langsung dan antre secara manual, yang sering menyebabkan penumpukan di bagian administrasi. Dengan aplikasi ini, mahasiswa cukup mengakses website, memilih jadwal yang tersedia, dan datang sesuai waktu yang sudah dipesan. Sistem akan otomatis menutup slot yang sudah penuh sehingga tidak ada tumpang tindih jadwal antar mahasiswa.
+Aplikasi web untuk memudahkan proses pengambilan Kartu Tanda Mahasiswa. Mahasiswa bisa daftar akun, login, lalu pilih jadwal pengambilan KTM tanpa harus antre langsung ke bagian administrasi. Slot yang sudah penuh akan otomatis ditutup oleh sistem.
 
 ## Tech Stack
 
-Sisi server dibangun menggunakan Node.js dengan framework Express.js, yang dipilih karena mampu menangani banyak request secara bersamaan dengan efisien — penting ketika banyak mahasiswa mengakses sistem di waktu yang sama. Data pengguna dan jadwal booking disimpan di database MySQL, yang menjamin integritas data dan mencegah konflik jadwal. Untuk pengembangan lokal, disarankan menggunakan XAMPP karena sudah menyertakan MySQL server dan phpMyAdmin dalam satu paket instalasi.
+Aplikasi ini menggunakan Node.js dan Express.js untuk sisi server, MySQL sebagai database, dan XAMPP untuk menjalankan MySQL secara lokal.
 
 ## Prasyarat
 
-Sebelum menjalankan aplikasi, pastikan komputer sudah terinstal Node.js (untuk menjalankan server) dan XAMPP (untuk menjalankan MySQL secara lokal).
+Pastikan sudah menginstal Node.js dan XAMPP di komputer sebelum memulai.
 
-## Instalasi & Menjalankan
+## Cara Menjalankan
 
 **1. Clone repositori**
 
-Clone repositori ini ke komputer lokal, lalu masuk ke folder proyeknya melalui terminal.
+Clone repositori ini ke komputer, lalu buka foldernya di terminal.
 
 **2. Install dependencies**
 
-Jalankan `npm install` di dalam folder proyek. Perintah ini akan membaca daftar kebutuhan aplikasi dan mengunduh seluruh modul yang diperlukan, termasuk Express.js dan modul koneksi ke database.
+Jalankan perintah berikut untuk menginstal semua modul yang dibutuhkan.
+
+```
+npm install
+```
 
 **3. Siapkan database**
 
-Buka panel XAMPP dan aktifkan layanan MySQL. Setelah MySQL berjalan, buka phpMyAdmin melalui browser (biasanya di `http://localhost/phpmyadmin`), lalu buat database baru dengan nama `booking_ktm`. Jika di dalam folder proyek terdapat file berekstensi `.sql`, import file tersebut ke database yang baru dibuat. Proses import ini akan otomatis membuat seluruh struktur tabel yang dibutuhkan aplikasi, seperti tabel pengguna dan tabel jadwal booking.
+Buka XAMPP dan aktifkan MySQL. Setelah itu buka phpMyAdmin di browser (`http://localhost/phpmyadmin`), lalu buat database baru dengan nama `booking_ktm`. Jika ada file `.sql` di dalam folder proyek, import file tersebut ke database yang sudah dibuat tadi agar struktur tabelnya terbentuk otomatis.
 
-**4. Konfigurasi environment**
+**4. Buat file .env**
 
-Buat file baru bernama `.env` di folder utama proyek. File ini digunakan untuk menyimpan informasi sensitif seperti password database agar tidak ikut terupload ke repositori. Isi file tersebut dengan konfigurasi berikut, lalu sesuaikan nilainya dengan kondisi lokal Anda:
+Buat file `.env` di folder utama proyek, lalu isi dengan konfigurasi berikut dan sesuaikan dengan pengaturan lokal masing-masing.
 
 ```
 DB_HOST=localhost
@@ -38,12 +42,16 @@ PORT=3000
 
 **5. Jalankan aplikasi**
 
-Jalankan perintah `npm run dev` di terminal. Jika semua langkah sebelumnya sudah benar, terminal akan menampilkan pesan bahwa server sudah aktif. Buka browser dan akses `http://localhost:3000` untuk melihat tampilan aplikasi.
+```
+npm run dev
+```
+
+Buka browser dan akses `http://localhost:3000`.
 
 ## Uji Coba
 
-Setelah aplikasi berjalan, lakukan pengujian dengan mendaftar akun baru menggunakan nama dan nomor induk mahasiswa. Setelah itu coba login, lalu lakukan booking satu jadwal pengambilan KTM. Pastikan jadwal tersebut tersimpan dan konfirmasi muncul di dashboard — ini menandakan seluruh alur data dari frontend hingga database berjalan dengan normal.
+Coba daftar akun baru, login, lalu booking satu jadwal. Jika data tersimpan dan konfirmasi muncul di dashboard, berarti aplikasi sudah berjalan dengan benar.
 
 ## Troubleshooting
 
-Jika aplikasi menampilkan error koneksi ke database, kemungkinan besar MySQL di XAMPP belum diaktifkan atau isi file `.env` ada yang salah ketik — periksa kembali nama database, username, dan password-nya. Jika server gagal start karena port sudah dipakai proses lain, cukup ganti nilai `PORT` di file `.env` ke nomor lain misalnya `3001`.
+Jika muncul error koneksi database, pastikan MySQL di XAMPP sudah aktif dan isi file `.env` sudah benar. Jika port bentrok, ganti nilai `PORT` di file `.env` ke nomor lain misalnya `3001`.
